@@ -26,7 +26,8 @@ const User = mongoose.model('User', {
   },
   password: {
     type: String,
-    required: true
+    required: true,
+    minLength: 5
   },
   accessToken: {
     type: String,
@@ -52,6 +53,13 @@ const app = express()
 //  MIDDLEWARE TO ENABLE CORS AND JSON BODY PARSING
 app.use(cors())
 app.use(bodyParser.json())
+app.use((req, res, next) => {
+  if (mongoose.connection.readyState === 1) {
+    next()
+  } else {
+    res.status(503).json({ error: 'Service unavailable' })
+  }
+})
 
 // ROUTES
 app.get('/', (req, res) => {
