@@ -42,13 +42,6 @@ const app = express()
 //  MIDDLEWARE TO ENABLE CORS AND JSON BODY PARSING
 app.use(cors())
 app.use(bodyParser.json())
-app.use((req, res, next) => {
-  if (mongoose.connection.readyState === 1) {
-    next()
-  } else {
-    res.status(503).json({ error: 'Service unavailable' })
-  }
-})
 
 // Middleware to check user's access token in DB
 const authenticateUser = async (req, res, next) => {

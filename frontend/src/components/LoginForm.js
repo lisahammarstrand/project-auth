@@ -3,38 +3,27 @@ import { useHistory } from "react-router-dom"
 import styled from 'styled-components'
 
 export const Form = styled.form`
-  margin: 60px auto;
-  display: block;
-  padding: 20px 30px 30px 30px;
-  max-width: 480px;
-  background: #ededed;
-  border-radius: 8px;
+  border-radius: 10px;
+  margin: 100px auto;
+  padding: 40px 30px 30px 30px;
+  max-width: 500px;
+  background: #F2F2F2;
   `
 
 export const Input = styled.input`
-  /* position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0; */
-  width: 100%;
-  transition: border-color $standard-transition;
-  z-index: 2;
-  display: block;
-  background: transparent;
-  line-height: 54px;
-  margin: 10px 0px;
-  padding: 0 10px;
-  font-size: 15px;
-  border: none;
-  color: #333;
-  border-radius: 3px;
-  border: 1px solid transparent;
-  border-bottom: 1px solid black;
-  &:focus, &:active {
-    outline: none;
-    border-color: #ededed;
-    border-bottom: 2px solid black;
+line-height: 25px;
+margin: 8px 0px;
+font-size: 18px;
+border: none;
+color: black;
+width: 95%;
+transition: border-color $standard-transition;
+background: transparent;
+border-bottom: 1px solid black;
+&:focus, &:active {
+  outline: none;
+  border-color: #F2F2F2;
+  border-bottom: 2px solid #3DD990;
   }
 `
 
@@ -43,19 +32,15 @@ export const Button = styled.button`
   margin: 30px 0;
   height: 54px;
   width: 100%;
-  background: #33cc77;
-  border: 1px solid darken(#33cc77,0.1);
+  background: #8985F2;
   border-top-color: transparent;
-  border-radius: 3px;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
   color: #fff;
-  text-shadow: -1px -1px rgba(0,0,0,0.1);
-  transition: background $standard-transition;
-  &:hover {
-    background: lighten(#33cc77,10%);
-    cursor: pointer;
-  }
+    &:hover {
+      background: #312F73;
+      cursor: pointer;
+    }
   `
 
 export const Label = styled.label`
