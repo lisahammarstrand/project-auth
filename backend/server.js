@@ -35,17 +35,6 @@ const User = mongoose.model('User', {
   }
 })
 
-// Middleware to check user's access token in DB
-const authenticateUser = async (req, res, next) => {
-  const user = await User.findOne({ accessToken: req.header('Authorization') })
-  if (user) {
-    req.user = user
-    next()
-  } else {
-    res.status(403).json({ loggedOut: true, message: 'Please login to access the content' })
-  }
-}
-
 // PORT=9000 npm start
 const port = process.env.PORT || 8080
 const app = express()
@@ -61,6 +50,17 @@ app.use((req, res, next) => {
   }
 })
 
+// Middleware to check user's access token in DB
+const authenticateUser = async (req, res, next) => {
+  const user = await User.findOne({ accessToken: req.header('Authorization') })
+  if (user) {
+    req.user = user
+    next()
+  } else {
+    res.status(403).json({ loggedOut: true, message: 'Please login to access the content' })
+  }
+}
+
 // ROUTES
 app.get('/', (req, res) => {
   res.send('Technigo Auth project 2020: Lisa Hammarstrand and Anne-Sophie Gendron')
@@ -72,8 +72,8 @@ app.post('/users', async (req, res) => {
     const { name, email, password } = req.body
     // DO not store plaintext passwords
     const user = new User({ name, email, password: bcrypt.hashSync(password) })
-    user.save()
-    res.status(201).json({ id: user._id, accessToken: user.accessToken })
+    const saved = user.save()
+    res.status(201).json({ id: user._id, accessToken: user.accessToken, saved })
   } catch (err) {
     res.status(400).json({ message: "Could not create user", errors: err.errors })
   }
