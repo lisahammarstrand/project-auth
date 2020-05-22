@@ -9,21 +9,30 @@ export const Form = styled.form`
   max-width: 500px;
   background: #F2F2F2;
   `
-  export const Input = styled.input`
-  line-height: 25px;
-  margin: 8px 0px;
-  font-size: 18px;
-  border: none;
-  color: black;
-  width: 95%;
-  transition: border-color $standard-transition;
-  background: transparent;
-  border-bottom: 1px solid black;
-  &:focus, &:active {
-    outline: none;
-    border-color: #F2F2F2;
-    border-bottom: 2px solid #3DD990;
-  }
+
+export const Card = styled.form`
+  border-radius: 10px;
+  margin: 100px auto;
+  padding: 40px 30px 30px 30px;
+  max-width: 500px;
+  background: #F2F2F2;
+  `
+
+export const Input = styled.input`
+    line-height: 25px;
+    margin: 8px 0px;
+    font-size: 18px;
+    border: none;
+    color: black;
+    width: 95%;
+    transition: border-color $standard-transition;
+    background: transparent;
+    border-bottom: 1px solid black;
+      &:focus, &:active {
+       outline: none;
+       border-color: #F2F2F2;
+       border-bottom: 2px solid #3DD990;
+      }
 `
 export const Label = styled.label`
   color: grey;
@@ -76,8 +85,14 @@ export const RegisterForm = () => {
       .catch(err => console.log('Error:', err))
   }
 
+  //redirect to register page
   const reDirect = () => {
     history.push(`/`)
+  }
+
+  //redirect to start page if account creaction successul
+  const reDirectMain = () => {
+    history.push(`/secret`)
   }
 
   return (
@@ -95,7 +110,7 @@ export const RegisterForm = () => {
             <Label>
               Name
             {name.length < 2 && name.length !== 0 && " is too short"}
-              {name.length > 20 && " is too long"}
+              {name.length > 15 && " is too long"}
               <Input
                 type="text"
                 required
@@ -147,10 +162,15 @@ export const RegisterForm = () => {
         </div>
       )}
 
+{/* Confirmation page  */}
       {registered && (
-        <div>
-          <h1>Congratulations, account created</h1>
-        </div>
+        <Card>
+          <p>Congratulations, account created</p>
+            <Button
+              type="button"
+              onClick={reDirectMain}
+            >To login page</Button>
+        </Card>
       )}
     </div>
   )

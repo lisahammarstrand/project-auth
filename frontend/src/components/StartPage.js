@@ -2,24 +2,28 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
+export const Card = styled.div`
+  border-radius: 10px;
+  margin: 100px auto;
+  padding: 40px 30px 30px 30px;
+  max-width: 500px;
+  background: #F2F2F2;
+  `
+
 export const Button = styled.button`
   display: block;
   margin: 30px 0;
   height: 54px;
   width: 100%;
-  background: #33cc77;
-  border: 1px solid darken(#33cc77,0.1);
+  background: #8985F2;
   border-top-color: transparent;
-  border-radius: 3px;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
   color: #fff;
-  text-shadow: -1px -1px rgba(0,0,0,0.1);
-  transition: background $standard-transition;
-  &:hover {
-    background: lighten(#33cc77,10%);
+   &:hover {
+    background: #312F73;
     cursor: pointer;
-  }
+  } 
   `
 
 const url = "https://auth-project-technigo.herokuapp.com/secrets"
@@ -49,7 +53,7 @@ export const StartPage = props => {
   }, [accessToken])
 
   return (
-    <div>
+    <Card>
       {message && (
         <div>
           <h1>You are logged in</h1>
@@ -65,9 +69,11 @@ export const StartPage = props => {
           type="button"
           onClick={() => window.localStorage.removeItem("accessToken")}
         >
-          <Link to={`/`}>{errorMessage ? "Sign in" : "Log out"}</Link>
+          <Link to={`/`}>
+            <div>{errorMessage ? "Sign in" : "Log out"}</div>
+          </Link>
         </Button>
       </div>
-    </div >
+    </Card>
   )
 }
