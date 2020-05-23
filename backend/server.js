@@ -4,7 +4,7 @@ import cors from 'cors'
 import mongoose from 'mongoose'
 import crypto from 'crypto'
 import bcrypt from 'bcrypt-nodejs'
-// import a database Netflix?
+import secretMessageData from './data/secretmessage.json'
 
 const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/authAPI"
 mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -34,6 +34,23 @@ const User = mongoose.model('User', {
     default: () => crypto.randomBytes(128).toString('hex')
   }
 })
+
+// Secret messages model
+const SecretMessage = mongoose.model('SecretMessage', {
+  message: {
+    type: String
+  }
+})
+
+if (process.env.RESET_DATABASE) {
+  console.log('Resetting database ...')
+
+  const seedDatabase = async () => {
+    await SecretMessage.deleteMany()
+    await secretMessageData.forEach((secretMessage) => new SecretMessage(secretMessage).save())
+  }
+  seedDatabase()
+}
 
 // PORT=9000 npm start
 const port = process.env.PORT || 8080
@@ -75,9 +92,9 @@ app.post('/users', async (req, res) => {
 // ROUTES FOR SECRETS
 app.get('/secrets', authenticateUser)
 
-// Change this to fetch data? if authenticate successsfull (try - catch status(403 = Forbidden, the client does not have access rigths to the content))
-app.get('/secrets', (req, res) => {
-  res.json({ secret: "This is a super secret message" })
+app.get('/secrets', async (req, res) => {
+  const secretmessages = await SecretMessage.find().exec()
+  res.json(secretmessages)
 })
 
 // ROUTE FOR LOGIN (find a user, do not create)
