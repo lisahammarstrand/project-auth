@@ -15,16 +15,3 @@ export const App = () => {
     </BrowserRouter>
   )
 }
-
-// Main page
-// 1. Register a user with name, email and choose password => button to register
-// 2. Log in input with email & password => button to log in
-
-
-// COMPONENTS THAT WE NEED (use of styled components)
-// 1. StartPage.js
-// 2. RegisterForm.js
-// 3: LoginForm.js
-
-// PAGES
-// SecretPage.js

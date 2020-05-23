@@ -1,54 +1,9 @@
 import React, { useState } from "react"
 import { useHistory } from "react-router-dom"
-import styled from 'styled-components'
-
-export const Form = styled.form`
-  border-radius: 10px;
-  margin: 100px auto;
-  padding: 40px 30px 30px 30px;
-  max-width: 500px;
-  background: #F2F2F2;
-  `
-
-export const Input = styled.input`
-line-height: 25px;
-margin: 8px 0px;
-font-size: 18px;
-border: none;
-color: black;
-width: 95%;
-transition: border-color $standard-transition;
-background: transparent;
-border-bottom: 1px solid black;
-&:focus, &:active {
-  outline: none;
-  border-color: #F2F2F2;
-  border-bottom: 2px solid #3DD990;
-  }
-`
-
-export const Button = styled.button`
-  display: block;
-  margin: 30px 0;
-  height: 54px;
-  width: 100%;
-  background: #8985F2;
-  border-top-color: transparent;
-  font-size: 18px;
-  font-weight: bold;
-  color: #fff;
-    &:hover {
-      background: #312F73;
-      cursor: pointer;
-    }
-  `
-
-export const Label = styled.label`
-  line-height: 1px;
-  color: #666;
-  font-size: 13px;
-  padding: 10px;  
-`
+import { Button } from 'lib/Button'
+import { Input } from 'lib/Input'
+import { Form } from 'lib/Form'
+import { Label } from 'lib/Label'
 
 export const LoginForm = () => {
   const [email, setEmail] = useState("")
@@ -112,12 +67,12 @@ export const LoginForm = () => {
 
         <div>{errorMessage}</div>
 
-        <Button
+        <Button background="#8985F2" hover="#312F73"
           type="submit"
           onClick={handleSignIn}
         >Login</Button>
 
-        <Button
+        <Button background="#8985F2" hover="#312F73"
           type="button"
           onClick={reDirect}
         >

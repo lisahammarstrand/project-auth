@@ -1,59 +1,10 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import styled from 'styled-components'
-
-export const Form = styled.form`
-  border-radius: 10px;
-  margin: 100px auto;
-  padding: 40px 30px 30px 30px;
-  max-width: 500px;
-  background: #F2F2F2;
-  `
-
-export const Card = styled.form`
-  border-radius: 10px;
-  margin: 100px auto;
-  padding: 40px 30px 30px 30px;
-  max-width: 500px;
-  background: #F2F2F2;
-  `
-
-export const Input = styled.input`
-    line-height: 25px;
-    margin: 8px 0px;
-    font-size: 18px;
-    border: none;
-    color: black;
-    width: 95%;
-    transition: border-color $standard-transition;
-    background: transparent;
-    border-bottom: 1px solid black;
-      &:focus, &:active {
-       outline: none;
-       border-color: #F2F2F2;
-       border-bottom: 2px solid #3DD990;
-      }
-`
-export const Label = styled.label`
-  color: grey;
-  font-size: 13px;
-`
-
-export const Button = styled.button`
-  display: block;
-  margin: 30px 0;
-  height: 54px;
-  width: 100%;
-  background: #8985F2;
-  border-top-color: transparent;
-  font-size: 18px;
-  font-weight: bold;
-  color: #fff;
-  &:hover {
-    background: #312F73;
-    cursor: pointer;
-  }
-  `
+import {Button} from 'lib/Button'
+import {Input} from 'lib/Input'
+import {MessageContainer} from 'lib/MessageContainer'
+import {Form} from 'lib/Form'
+import {Label} from 'lib/Label'
 
 const url = "https://auth-project-technigo.herokuapp.com/users"
 
@@ -144,7 +95,7 @@ export const RegisterForm = () => {
               ></Input>
             </Label>
 
-            <Button
+            <Button background="#8985F2" hover="#312F73"
               type="submit"
               disabled={
                 name.length > 1 && name.length < 21 && password.length > 4 && email ? false : true
@@ -153,7 +104,7 @@ export const RegisterForm = () => {
             >Register</Button>
 
             <p>Already have an account?</p>
-            <Button
+            <Button background="#8985F2" hover="#312F73"
               type="button"
               onClick={reDirect}
             >Sign in</Button>
@@ -164,13 +115,13 @@ export const RegisterForm = () => {
 
 {/* Confirmation page  */}
       {registered && (
-        <Card>
+        <MessageContainer>
           <p>Congratulations, account created</p>
-            <Button
+            <Button background="#8985F2" hover="#312F73"
               type="button"
               onClick={reDirectMain}
             >To login page</Button>
-        </Card>
+        </MessageContainer>
       )}
     </div>
   )
