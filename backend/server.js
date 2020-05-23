@@ -93,7 +93,7 @@ app.post('/users', async (req, res) => {
 app.get('/secrets', authenticateUser)
 
 app.get('/secrets', async (req, res) => {
-  const secretmessages = await SecretMessage.find().exec()
+  const secretmessages = await SecretMessage.find({ message }).exec()
   res.json(secretmessages)
 })
 
