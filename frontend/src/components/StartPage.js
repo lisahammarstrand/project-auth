@@ -11,8 +11,9 @@ export const StartPage = props => {
   const accessToken = window.localStorage.getItem("accessToken")
   const [secrets, setSecrets] = useState([]) //1
 
+  // Took out the setErrorMessage, not sure where to place it back
+  // Fetch to secrets work now
   useEffect(() => {
-    setErrorMessage("")
     fetch(url, {
       method: "GET",
       headers: { Authorization: accessToken }
@@ -24,20 +25,24 @@ export const StartPage = props => {
           return response.json()
         }
       })
-      .then(json => setMessage(json.message))
-      .catch(err => {
-        setErrorMessage(err.message)
+      .then(data => {
+        // Set the state based on the response
+        setSecrets(data)
       })
-  }, [accessToken])
+  }, [])
 
+  // Changed this section to line 45, did a map
   return (
     <MessageContainer>
-      {message && (
-        <div>
-          <h1>You are logged in</h1>
-          <p>{message}</p>
-        </div>
-      )}
+      <h1>You are logged in</h1>
+      <h2>Your soft challenges this week:</h2>
+      {secrets.map(secret => {
+        return (
+          <div key={secret._id}>
+            <p>{secret.message}</p>
+          </div>
+        )
+      })}
 
       <div>
         {errorMessage &&
