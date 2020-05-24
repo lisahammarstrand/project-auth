@@ -9,7 +9,7 @@ export const StartPage = props => {
   const [message, setMessage] = useState("")
   const [errorMessage, setErrorMessage] = useState("")
   const accessToken = window.localStorage.getItem("accessToken")
-  const [secrets, setSecrets] = useState([]) //1
+  const [secrets, setSecrets] = useState("")
 
   // Took out the setErrorMessage, not sure where to place it back
   // Fetch to secrets work now
