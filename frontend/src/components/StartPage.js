@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { Button } from 'lib/Button'
 import { MessageContainer } from 'lib/MessageContainer'
 
-const url = "http://localhost:8080/secrets"
+const url = "https://auth-project-technigo.herokuapp.com/secrets"
 
 export const StartPage = props => {
   const [message, setMessage] = useState("")

@@ -10,7 +10,7 @@ export const LoginForm = () => {
   const [password, setPassword] = useState("")
   const [errorMessage, setErrorMessage] = useState("")
   const history = useHistory()
-  const url = "http://localhost:8080/sessions"
+  const url = "https://auth-project-technigo.herokuapp.com/sessions"
 
   const handleSignIn = e => {
     e.preventDefault()
