@@ -9,7 +9,7 @@ export const StartPage = props => {
   const [message, setMessage] = useState("")
   const [errorMessage, setErrorMessage] = useState("")
   const accessToken = window.localStorage.getItem("accessToken")
-  const [secrets, setSecrets] = useState([])
+  const [secrets, setSecrets] = useState([]) //1
 
   // Took out the setErrorMessage, not sure where to place it back
   // Fetch to secrets work now
@@ -20,7 +20,7 @@ export const StartPage = props => {
     })
       .then(response => {
         if (!response.ok) {
-          throw new Error("Please login to see the content")
+          throw new Error("Please login to see the content", JSON)
         } else {
           return response.json()
         }
