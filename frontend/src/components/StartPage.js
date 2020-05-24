@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom'
 import { Button } from 'lib/Button'
 import { MessageContainer } from 'lib/MessageContainer'
 
-const url = "https://auth-project-technigo.herokuapp.com/secrets"
+const url = "http://localhost:8080/secrets"
 
 export const StartPage = props => {
   const [message, setMessage] = useState("")
   const [errorMessage, setErrorMessage] = useState("")
   const accessToken = window.localStorage.getItem("accessToken")
-  const [secrets, setSecrets] = useState("")
+  const [secrets, setSecrets] = useState([])
 
   // Took out the setErrorMessage, not sure where to place it back
   // Fetch to secrets work now
@@ -20,7 +20,7 @@ export const StartPage = props => {
     })
       .then(response => {
         if (!response.ok) {
-          throw new Error("Please login to see the content", JSON)
+          throw new Error("Please login to see the content")
         } else {
           return response.json()
         }
@@ -29,6 +29,7 @@ export const StartPage = props => {
         // Set the state based on the response
         setSecrets(data)
       })
+      .catch((error) => { console.log("error"); alert("Please login to see the content") })
   }, [])
 
   // Changed this section to line 45, did a map

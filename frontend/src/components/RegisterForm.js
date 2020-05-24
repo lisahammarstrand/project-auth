@@ -6,7 +6,7 @@ import {MessageContainer} from 'lib/MessageContainer'
 import {Form} from 'lib/Form'
 import {Label} from 'lib/Label'
 
-const url = "https://auth-project-technigo.herokuapp.com/users"
+const url = "http://localhost:8080/users"
 
 export const RegisterForm = () => {
   const [name, setName] = useState("")
