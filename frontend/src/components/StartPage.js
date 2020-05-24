@@ -29,7 +29,7 @@ export const StartPage = props => {
         // Set the state based on the response
         setSecrets(data)
       })
-      .catch((error) => { console.log("error"); alert("Please login to see the content") })
+      .catch(err => console.log('Error:', err))
   }, [])
 
   // Changed this section to line 45, did a map
