@@ -16,8 +16,8 @@ const User = mongoose.model('User', {
     type: String,
     unique: true,
     required: true,
-    minLength: 2,
-    maxLength: 15
+    minlength: 2,
+    maxlength: 20
   },
   email: {
     type: String,
@@ -93,7 +93,7 @@ app.post('/users', async (req, res) => {
 app.get('/secrets', authenticateUser)
 
 app.get('/secrets', async (req, res) => {
-  const secretmessages = await SecretMessage.find({ message }).exec()
+  const secretmessages = await SecretMessage.find().exec()
   res.json(secretmessages)
 })
 
