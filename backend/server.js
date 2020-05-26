@@ -11,6 +11,7 @@ mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true })
 mongoose.Promise = Promise
 
 // USER MODEL
+// name and email validation not working, required and max/min lenghth
 const User = mongoose.model('User', {
   name: {
     type: String,
