@@ -31,6 +31,13 @@ export const RegisterForm = () => {
           )
         } else {
           setRegistered(true)
+          return res.json()
+        }
+      })
+      .then(({ accessToken }) => {
+        if (accessToken) {
+          window.localStorage.setItem("accessToken", accessToken)
+          history.push(`/secret`)
         }
       })
       .catch(err => console.log('Error:', err))
